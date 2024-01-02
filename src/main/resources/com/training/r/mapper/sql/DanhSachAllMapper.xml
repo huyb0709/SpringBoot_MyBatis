@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.training.r.mapper.DanhSachAllMapper">
+  <select id="listAll" resultType="com.training.r.model.DanhSachAll">
+  	SELECT kh.MaKH, TenKH, m.MaMay, m.ViTri, m.TrangThai, NgayBatDauSuDung, GioBatDauSuDung,
+	ThoiGian, dv.MaDV, NgaySuDung, GioSuDung,SoLuong,dv.DonGia,sum(SoLuong * DonGia) AS TongTien
+	FROM MAY m join
+	SUDUNGMAY sdM on m.MaMay = sdM.MaMay right join
+	KHACHHANG kh on sdM.MaKH = kh.MaKH left join
+	SUDUNGDICHVU sddv on kh.MaKH = sddv.MaKH join
+	DICHVU dv on sddv.MaDV = dv.MaDV
+	GROUP BY kh.MaKH, TenKH, m.MaMay, m.ViTri, m.TrangThai, NgayBatDauSuDung, GioBatDauSuDung,
+	ThoiGian, dv.MaDV, NgaySuDung, GioSuDung,SoLuong,dv.DonGia
+  </select>
+ </mapper>

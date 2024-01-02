@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+  <context id="DB2Tables" targetRuntime="MyBatis3">
+    <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+        connectionURL="jdbc:sqlserver://localhost:1433;DatabaseName=General_Assignment_HuyBVA;encrypt=true;trustServerCertificate=true;"
+        userId="sa"
+        password="123456">
+    </jdbcConnection>
+
+    <javaTypeResolver >
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+
+    <javaModelGenerator targetPackage="com.training.r.model" targetProject="SpringBoot_MyBatis_GeneralAssignment">
+    </javaModelGenerator>
+
+    <sqlMapGenerator targetPackage="com.training.r.mapper.sql"  targetProject="SpringBoot_MyBatis_GeneralAssignment/src/main/resources">
+
+    </sqlMapGenerator>
+
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.training.r.mapper"  targetProject="SpringBoot_MyBatis_GeneralAssignment">
+
+    </javaClientGenerator>
+
+    <table tableName="MAY" domainObjectName="May" ></table>
+	<table tableName="KHACHHANG" domainObjectName="KhachHang" ></table>
+	<table tableName="DICHVU" domainObjectName="DichVu" ></table>
+	<table tableName="SUDUNGDICHVU" domainObjectName="SuDungDichVu" ></table>
+	<table tableName="SUDUNGMAY" domainObjectName="SuDungMay" ></table>
+  </context>
+</generatorConfiguration>

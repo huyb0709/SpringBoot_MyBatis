@@ -1,0 +1,229 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tạo mới khách hàng</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+        integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="side-bar col-3 pl-0">
+                <ul class="bg-dark header">
+                    <header class="text-uppercase bg-dark text-light font-weight-bold text-center">Menu</header>
+                    <li >
+                        <a href="addComputers" class="text-dark">
+                            <span><i class="fas fa-plus-circle"></i></span>
+                            <span>Tạo mới máy</span>
+                        </a>
+                    </li>
+                    <li class="active" >
+                        <a href="addCustomers" class="text-dark">
+                            <span><i class="fas fa-plus-circle"></i></span>
+                            <span>Tạo mới khách hàng</span>
+                        </a>
+                    </li>
+                    <li >
+                        <a href="addServices" class="text-dark">
+                            <span><i class="fas fa-plus-circle"></i></span>
+                            <span>Tạo mới dịch vụ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="listComputers" class="text-dark">
+                            <span><i class="fas fa-list"></i></span>
+                            <span>Liệt kê danh sách máy</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="listCustomers" class="text-dark">
+                            <span><i class="fas fa-list"></i></span>
+                            <span>Liệt kê danh sách khách hàng</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="listServices" class="text-dark">
+                            <span><i class="fas fa-list"></i></span>
+                            <span>Liệt kê danh sách dịch vụ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="computerRegistration" class="text-dark">
+                            <span><i class="fas fa-pencil-alt"></i></span>
+                            <span>Đăng ký sử dụng máy</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="serviceRegistration" class="text-dark">
+                            <span><i class="fas fa-pencil-alt"></i></span>
+                            <span>Đăng ký sử dụng dịch vụ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="listALL" class="text-dark">
+                            <span><i class="fas fa-list"></i></span>
+                            <span>Liệt kê toàn bộ thông tin</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="main-content col-9 bg-dark">
+                <div class="d-flex justify-content-center flex-column">
+                    <h1 class="text-center mt-5 mb-4 text-white">Tạo mới khách hàng</h1>
+                    <div class="col-md-6 m-auto">
+                    
+                    <form th:action="@{saveCustomers}" method="POST" th:object="${maKH}" accept-charset="utf-8" id="myForm">
+                    		 <div class="form-outline mb-4">
+                                <label class="form-label text-white" for="tenKH">Mã khách hàng</label>
+                                <input type="text" id="maKH" name="maKH" class="form-control" value=""
+                                    placeholder="Nhập mã khách hàng" th:field="*{makh}"/>
+                                <small class="text-danger" id="maKHLog"></small>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label text-white" for="tenKH">Tên khách hàng</label>
+                                <input type="text" id="tenKH" name="tenKH" class="form-control" value=""
+                                    placeholder="Nhập tên khách hàng tối đa 50 ký tự" th:field="*{tenkh}"/>
+                                <small class="text-danger" id="tenKHLog"></small>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label text-white" for="diaChi">Địa chỉ</label>
+                                <input type="text" id="diaChi" name="diaChi" class="form-control" value=""
+                                    placeholder="Nhập địa chỉ tối đa 100 ký tự" th:field="*{diachi}" />
+                                <small class="text-danger" id="diaChiLog"></small>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label text-white" for="soDienThoai">Số điện thoại</label>
+                                <input type="text" id="soDienThoai" name="soDienThoai" class="form-control" value=""
+                                    placeholder="Nhập đúng định dạng số điện thoại" th:field="*{sodienthoai}"/>
+                                <small class="text-danger" id="soDienThoaiLog"></small>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label text-white" for="diaChiEmail">Địa chỉ email</label>
+                                <input type="text" id="diaChiEmail" name="diaChiEmail" class="form-control" value=""
+                                    placeholder="Nhập đúng định dạng email" th:field="*{diachiemail}"/>
+                                <small class="text-danger" id="diaChiEmailLog"></small>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <button type="submit" class="btn btn-success btn-block mb-4" >Thêm Khách Hàng</button>
+                                </div>
+                            </div>
+                        </form>                  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/js/v4-shims.min.js"
+        integrity="sha512-91m+ZGg5aSL6XUpAOw+c8vzTsNw2lwwQow/mqunXctqfMV1/d1b/fWF8m10bxnF0qJ3bEHSQuvv0bKqR3AEiiQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script th:src="@{/js/Validation.js}"></script>
+    <script type="text/javascript">
+    	function myFunction(){
+    		alert("Thêm Thành Công!");
+    	}
+    </script>
+    <script>
+      $(document).ready(function () {
+            $('#myForm').submit((e) => {
+                e.preventDefault();
+                const maKH = e.currentTarget.maKH.value;
+                const tenKH = e.currentTarget.tenKH.value;
+                const diaChi = e.currentTarget.diaChi.value;
+                const soDienThoai = e.currentTarget.soDienThoai.value;
+                const diaChiEmail = e.currentTarget.diaChiEmail.value;
+                let 
+                	checkMaKH = false,
+                    checkTenKH = false,
+                    checkDiaChi = false,
+                    checkSoDienThoai = false,
+                    checkDiaChiEmail = false
+
+                 if (maKH && maKH.length === 7) {
+                    let kh = maKH.substring(0, 2);
+                    let xx = maKH.substring(2);
+                    if (kh == 'KH' && stringContainsOnlyNumber(xx)) {
+                        checkMaKH = true;
+                        $("#maKHLog").text('');
+                    } else {
+                        checkMaKH = false;
+                        $("#maKHLog").text('Mã Khách hàng phải là KHxxxxx, x là số.');
+                    }
+                } else {
+                    checkMaKH = false;
+                    $("#maKHLog").text('Mã Khách hàng phải là KHxxxxx, x là số.');
+                }
+                if (tenKH && checkLength(tenKH, 1, 50)) {
+                    checkTenKH = true;
+                    $("#tenKHLog").text('');
+                } else {
+                    checkTenKH = false;
+                    $("#tenKHLog").text('Tên khách hàng phải có và tối đa 50 ký tự.');
+                }
+                if (diaChi && checkLength(diaChi, 1, 100)) {
+                    checkDiaChi = true;
+                    $("#diaChiLog").text('');
+                } else {
+                    checkDiaChi = false;
+                    $("#diaChiLog").text('Tên khách hàng phải có và tối đa 100 ký tự.');
+                }
+                if (diaChiEmail && checkLength(diaChiEmail, 1, 50) && checkEmail(diaChiEmail)) {
+                    checkDiaChiEmail = true;
+                    $("#diaChiEmailLog").text('');
+                } else {
+                    checkDiaChiEmail = false;
+                    $("#diaChiEmailLog").text('Email là bắt buộc, đúng định dạng và tối đa 50 ký tự.');
+                }
+                if (soDienThoai && checkLength(soDienThoai, 10, 11) && stringContainsNumber(soDienThoai)) {
+                    if ((soDienThoai.startsWith("090") || soDienThoai.startsWith("091")) && stringContainsOnlyNumber(soDienThoai.substring(3))) {
+                        checkSoDienThoai = true;
+                        $("#soDienThoaiLog").text('');
+                    } else {
+                        checkSoDienThoai = false;
+                        $("#soDienThoaiLog").text('Số điện thoại phải theo đúng định dạng 090xxxxxxx hoặc 091xxxxxxx hoặc (84)+90xxxxxxx hoặc (84)+91xxxxxxx.');
+                    }
+                   /*  if ((soDienThoai.startsWith("(84)+90") || soDienThoai.startsWith("(84)+91")) && stringContainsOnlyNumber(soDienThoai.substring(7))) {
+                        checkSoDienThoai = true;
+                        $("#soDienThoaiLog").text('');
+                    } else {
+                        checkSoDienThoai = false;
+                        $("#soDienThoaiLog").text('Số điện thoại phải theo đúng định dạng 090xxxxxxx hoặc 091xxxxxxx hoặc (84)+90xxxxxxx hoặc (84)+91xxxxxxx.');
+                    } */
+                } else {
+                    checkSoDienThoai = false;
+                    $("#soDienThoaiLog").text('Số điện thoại phải theo đúng định dạng 090xxxxxxx hoặc 091xxxxxxx hoặc (84)+90xxxxxxx hoặc (84)+91xxxxxxx.');
+                }
+
+                if (/* checkMaKH &&  */checkTenKH && checkDiaChi && checkSoDienThoai && checkDiaChiEmail) {
+                    e.currentTarget.submit(alert("Thêm thành công!"));
+                   
+                }
+            })
+        }); 
+    </script> 
+</body>
+
+</html>

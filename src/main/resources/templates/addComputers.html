@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+	<title>Tạo mới máy</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+        integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw=="    
+        crossorigin="anonymous" referrerpolicy="no-referrer" />   
+    <link rel="stylesheet" th:href= "@{/css/base.css}">
+</head>
+<body>
+	 <div class="container-fluid">
+        <div class="row">
+            <div class="side-bar col-3 pl-0">
+                <ul class="bg-dark header">
+                    <header class="text-uppercase bg-dark text-light font-weight-bold text-center">Menu</header>
+                    <li class="active">
+                        <a href="addComputers" class="text-dark">
+                            <span><i class="fas fa-plus-circle"></i></span>
+                            <span>Tạo mới máy</span>
+                        </a>
+                    </li>
+                    <li >
+                        <a href="addCustomers" class="text-dark">
+                            <span><i class="fas fa-plus-circle"></i></span>
+                            <span>Tạo mới khách hàng</span>
+                        </a>
+                    </li>
+                    <li >
+                        <a href="addServices" class="text-dark">
+                            <span><i class="fas fa-plus-circle"></i></span>
+                            <span>Tạo mới dịch vụ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="listComputers" class="text-dark">
+                            <span><i class="fas fa-list"></i></span>
+                            <span>Liệt kê danh sách máy</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="listCustomers" class="text-dark">
+                            <span><i class="fas fa-list"></i></span>
+                            <span>Liệt kê danh sách khách hàng</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="listServices" class="text-dark">
+                            <span><i class="fas fa-list"></i></span>
+                            <span>Liệt kê danh sách dịch vụ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="computerRegistration" class="text-dark">
+                            <span><i class="fas fa-pencil-alt"></i></span>
+                            <span>Đăng ký sử dụng máy</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="serviceRegistration" class="text-dark">
+                            <span><i class="fas fa-pencil-alt"></i></span>
+                            <span>Đăng ký sử dụng dịch vụ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="listALL" class="text-dark">
+                            <span><i class="fas fa-list"></i></span>
+                            <span>Liệt kê toàn bộ thông tin</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="main-content col-9 bg-dark">
+                <div class="d-flex justify-content-center flex-column">
+                    <h1 class="text-center mt-5 mb-4 text-white">Tạo mới máy</h1>
+                    <div class="col-md-6 m-auto">
+                        <form th:action="@{saveComputer}" method="POST" th:object="${maMay}" accept-charset="utf-8" id="myForm">
+                            <div class="form-outline mb-4">
+                                <label class="form-label text-white" for="maMay">Mã Máy</label>
+                                <input type="text" class="form-control" id="maMay" name="maMay" value="" th:field="*{mamay}"
+                                />
+                           		<small class="text-danger" id="maMayLog" th:errors="*{mamay}"></small>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label text-white" for="viTri">Vị Trí</label>
+                                <input type="text" class="form-control" id="viTri" name="viTri" value="" th:field="*{vitri}"
+                                />
+                                <small class="text-danger" id="viTriLog" th:errors="*{vitri}"></small>
+                            </div>
+                            <div class="mb-4">
+                                <label for="trangThai" class="text-white">Trạng thái:</label>
+                                <select class="form-control" name="trangThai" id="trangThai" th:field="*{trangthai}" >
+                                    <option value="Rãnh">Rãnh</option>
+                                    <option value="Bận">Bận</option>
+                                    <option value="Dùng được">Dùng được</option>
+                                    <option value="Đang sửa chữa">Đang sửa chữa</option>
+                                </select>
+                                <small class="text-danger" id="trangThaiLog" th:errors="*{trangthai}"></small>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <button type="submit" class="btn btn-success btn-block mb-4">Thêm Máy</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/js/v4-shims.min.js"
+        integrity="sha512-91m+ZGg5aSL6XUpAOw+c8vzTsNw2lwwQow/mqunXctqfMV1/d1b/fWF8m10bxnF0qJ3bEHSQuvv0bKqR3AEiiQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script th:src="@{/js/Validation.js}"></script>
+    <!-- <script type="text/javascript">
+    	function myFunction(){
+    		alert("Thêm Thành Công!");
+    	}
+    </script> -->
+<!--    <script>
+        $(document).ready(function () {
+            $('#myForm').submit((e) => {
+                e.preventDefault();
+                const maMay = e.currentTarget.maMay.value;
+                const viTri = e.currentTarget.viTri.value;
+                const trangThai = e.currentTarget.trangThai.value;
+
+                let checkMaMay = false,
+                	checkViTri = false,
+                    checkTrangThai = false
+                if (maMay && checkLength(maMay, 1, 100)) {
+                    	//viTri.length >= 1
+                    checkMaMay = true;
+                    $("#maMayLog").text('');
+                } else {
+                	checkMaMay = false;
+                    $("#maMayLog").text('Mã Máy phải có');
+                }
+                    
+                if (viTri && checkLength(viTri, 1, 100)) {
+                	//viTri.length >= 1
+                    checkViTri = true;
+                    $("#viTriLog").text('');
+                } else {
+                    checkViTri = false;
+                    $("#viTriLog").text('Vị Trí phải có và tối đa 100 ký tự.');
+                }
+                if (checkViTri && checkMaMay) {
+                    e.currentTarget.submit();
+                    alert("Thêm máy thành công!")
+                }	
+            })
+        });
+    </script> -->
+</body>
+</html>

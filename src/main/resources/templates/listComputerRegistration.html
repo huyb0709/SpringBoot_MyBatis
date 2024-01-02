@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+ 	<title>Danh sách sử dụng máy</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+        integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" th:href= "@{/css/base.css}">
+</head>
+<body>
+	<div class="container-fluid">
+        <div class="row">
+            <div class="side-bar col-3 pl-0">
+               <ul class="bg-dark header">
+                    <header class="text-uppercase bg-dark text-light font-weight-bold text-center">Menu</header>
+                    <li >
+                        <a href="addComputers" class="text-dark">
+                            <span><i class="fas fa-plus-circle"></i></span>
+                            <span>Tạo mới máy</span>
+                        </a>
+                    </li>
+                    <li >
+                        <a href="addCustomers" class="text-dark">
+                            <span><i class="fas fa-plus-circle"></i></span>
+                            <span>Tạo mới khách hàng</span>
+                        </a>
+                    </li>
+                    <li >
+                        <a href="addServices" class="text-dark">
+                            <span><i class="fas fa-plus-circle"></i></span>
+                            <span>Tạo mới dịch vụ</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="listComputers" class="text-dark">
+                            <span><i class="fas fa-list"></i></span>
+                            <span>Liệt kê danh sách máy</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="listCustomers" class="text-dark">
+                            <span><i class="fas fa-list"></i></span>
+                            <span>Liệt kê danh sách khách hàng</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="listServices" class="text-dark">
+                            <span><i class="fas fa-list"></i></span>
+                            <span>Liệt kê danh sách dịch vụ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="computerRegistration" class="text-dark">
+                            <span><i class="fas fa-pencil-alt"></i></span>
+                            <span>Đăng ký sử dụng máy</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="serviceRegistration" class="text-dark">
+                            <span><i class="fas fa-pencil-alt"></i></span>
+                            <span>Đăng ký sử dụng dịch vụ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="listALL" class="text-dark">
+                            <span><i class="fas fa-list"></i></span>
+                            <span>Liệt kê toàn bộ thông tin</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="main-content col-9 bg-dark">
+                <div class=" d-flex justify-content-center flex-column">
+                    <h1 class="text-center mt-5 mb-4 text-white">Danh sách sử dụng máy</h1>
+                    <div class="col-md-10 m-auto">
+                        <div class="input-group mb-3">
+	                        <form th:action="@{/listComputerRegistration}" method="get" class="d-flex w-100">
+								<input type="text" class="form-control" placeholder="Search..." name="keyWord" />
+								<input type="submit" value="Search" class="input-group-text ml-2"  />
+							</form>
+						</div>
+                        <table class="table table-striped table-primary">
+                            <thead class="text-dark">
+                                <tr>
+                                	<th scope="col">Mã khách hàng</th>
+                                    <th scope="col">Mã máy</th>
+                                    <th scope="col">Ngày bắt đầu sử dụng</th>
+                                    <th scope="col">Giờ bắt đầu sử dụng</th>
+                                    <th scope="col">Thời gian sử dụng</th>
+                                    <th scope="col" colspan="2">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            
+                            <tr th:each="suDungMay : ${suDungMays}">
+                            		<td th:text="${suDungMay.makh}"></td>
+	                           		<td th:text="${suDungMay.mamay}"></td>		
+									<td th:text="${suDungMay.ngaybatdausudung}"></td>
+									<td th:text="${suDungMay.giobatdausudung}"></td>		
+									<td th:text="${suDungMay.thoigian}"></td>
+									<td>
+										<a th:href="@{/updateComputerRegistration(makh =${suDungMay.makh},mamay=${suDungMay.mamay},ngaybatdausudung=${suDungMay.ngaybatdausudung},giobatdausudung=${suDungMay.giobatdausudung})}" type="button" class="btn btn-primary text-white">Update</a>
+										<a th:href="@{/deleteComputerRegistration(makh =${suDungMay.makh},mamay=${suDungMay.mamay},ngaybatdausudung=${suDungMay.ngaybatdausudung},giobatdausudung=${suDungMay.giobatdausudung})}" type="submit" class="btn btn-danger text-white" th:onclick="if(!confirm('Are you sure you want to delete this computer ?')) return false">Delete</a>
+									</td>
+							</tr>
+                               
+                            </tbody>
+                        </table>
+                        
+<!--                         <nav class="mt-5">
+                            <ul class="pagination">
+                                <li class="page-item"><a class="page-link" href="<c:url value="/phantrangmay" />?p=0 ">First</a>
+								<li class="page-item"><a class="page-link" href="<c:url value="/phantrangmay" />?p=${listMay.number -1}">Preview</a>
+								<li class="page-item"><a class="page-link" href="<c:url value="/phantrangmay" />?p=${listMay.number +1} ">Next</a>
+								<li class="page-item"><a class="page-link" href="<c:url value="/phantrangmay" />?p=${listMay.totalPages -1} ">Last</a>
+                                </li>
+                            </ul>
+                        </nav> -->
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+	 <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/js/v4-shims.min.js"
+        integrity="sha512-91m+ZGg5aSL6XUpAOw+c8vzTsNw2lwwQow/mqunXctqfMV1/d1b/fWF8m10bxnF0qJ3bEHSQuvv0bKqR3AEiiQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Đăng ký sử dụng máy</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+        integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.css"
+        integrity="sha512-YdYyWQf8AS4WSB0WWdc3FbQ3Ypdm0QCWD2k4hgfqbQbRCJBEgX0iAegkl2S1Evma5ImaVXLBeUkIlP6hQ1eYKQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="side-bar col-3 pl-0">
+                <ul class="bg-dark header">
+                    <header class="text-uppercase bg-dark text-light font-weight-bold text-center">Menu</header>
+                    <li >
+                        <a href="addComputers" class="text-dark">
+                            <span><i class="fas fa-plus-circle"></i></span>
+                            <span>Tạo mới máy</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="addCustomers" class="text-dark">
+                            <span><i class="fas fa-plus-circle"></i></span>
+                            <span>Tạo mới khách hàng</span>
+                        </a>
+                    </li>
+                    <li >
+                        <a href="addServices" class="text-dark">
+                            <span><i class="fas fa-plus-circle"></i></span>
+                            <span>Tạo mới dịch vụ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="listComputers" class="text-dark">
+                            <span><i class="fas fa-list"></i></span>
+                            <span>Liệt kê danh sách máy</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="listCustomers" class="text-dark">
+                            <span><i class="fas fa-list"></i></span>
+                            <span>Liệt kê danh sách khách hàng</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="listServices" class="text-dark">
+                            <span><i class="fas fa-list"></i></span>
+                            <span>Liệt kê danh sách dịch vụ</span>
+                        </a>
+                    </li>
+                    <li   >
+                        <a href="computerRegistration" class="text-dark">
+                            <span><i class="fas fa-pencil-alt"></i></span>
+                            <span>Đăng ký sử dụng máy</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="serviceRegistration" class="text-dark">
+                            <span><i class="fas fa-pencil-alt"></i></span>
+                            <span>Đăng ký sử dụng dịch vụ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="listALL" class="text-dark">
+                            <span><i class="fas fa-list"></i></span>
+                            <span>Liệt kê toàn bộ thông tin</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="main-content col-9 bg-dark">
+                <div class="d-flex justify-content-center flex-column">
+                    <h1 class="text-center mt-5 mb-4 text-white">Đăng ký sử dụng dịch vụ</h1>
+                    <div class="col-md-6 m-auto">
+                    
+                        <form  th:action="@{saveRegisterService}" id="myForm1" method="post" th:object="${serviceRegis}">
+                            <div class="form-outline mb-4">
+                                <label class="form-label text-white" for="maKH">Mã KH</label>
+                                <input type="text" id="maKH" name="id.maKH" class="form-control"
+                                placeholder="Nhập mã KH: KHxxxx, x là chữ số"  value="" th:field="*{makh}"/>
+                                <small class="text-danger" id="maKHLog"></small>
+                            </div>
+                            <div class="mb-4">
+                                <label for="maMay" class="text-white">Mã Dich Vu:</label>
+                                <input type="text" id="maMay" name="id.maDV" class="form-control"
+                                placeholder="Nhập mã DV: KHxxxx, x là chữ số"  value="" th:field="*{madv}"/>
+                                <small class="text-danger" id="maKHLog"></small>
+                                <!-- <select class="form-control" name="maMay" id="maMay">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                </select> -->
+                            </div>
+                            
+                            <div class="form-outline mb-4">
+                                <label class="form-label text-white" for="ngaySuDung">Ngày sử dụng</label>
+                                <div class="input-group mb-3 w-100">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="search"><i
+                                                class="fas fa-calendar-alt"></i></span>
+                                    </div>
+                                    <input type="text" data-toggle="datepicker" placeholder="dd/MM/yyyy"
+                                        id="ngaySuDung" name="id.usingDate"
+                                        class="form-control" th:field="*{ngaysudung}">
+                                    <div data-toggle="datepicker"></div>
+                                </div>
+                                <small class="text-danger" id="ngaySuDungLog"></small>
+                            </div>
+                            
+                            <div class="form-outline mb-4">
+                                <label class="form-label text-white" for="gioSuDung">Giờ sử dụng</label>
+                                <div class="input-group mb-3 w-100">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="search"><i class="fas fa-clock"></i></span>
+                                    </div>
+                                    <input type="text" data-toggle="timepicker" placeholder="00:00 AM"
+                                        id="gioSuDung" name="id.usingTime"
+                                        class="form-control timepicker"  th:field="*{giosudung}">
+                                    <div data-toggle="timepicker"></div>
+                                </div>
+                                <small class="text-danger" id="gioSuDungLog"></small>
+                            </div>
+                            
+                            <div class="form-outline mb-4">
+                                <label class="form-label text-white" for="soLuong">Số lượng</label>
+                                <input type="text" id="soLuong" name="quantity" class="form-control"
+                                 placeholder="Nhập số lượng"    value="" th:field="*{soluong}"/>
+                                 <small class="text-danger" id="soLuongLog"></small>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col">
+                                    <button type="submit" class="btn btn-success btn-block mb-4" onClick="myFunction()">Đăng ký dùng dịch vụ</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/js/v4-shims.min.js"
+        integrity="sha512-91m+ZGg5aSL6XUpAOw+c8vzTsNw2lwwQow/mqunXctqfMV1/d1b/fWF8m10bxnF0qJ3bEHSQuvv0bKqR3AEiiQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.js"
+        integrity="sha512-RCgrAvvoLpP7KVgTkTctrUdv7C6t7Un3p1iaoPr1++3pybCyCsCZZN7QEHMZTcJTmcJ7jzexTO+eFpHk4OCFAg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+    <script th:src="@{/js/Validation.js}"></script>
+    <script type="text/javascript">
+    	function myFunction(){
+    		alert("Thêm Thành Công!");
+    	}
+    </script>
+    <!-- <script>
+        $('[data-toggle="datepicker"]').datepicker({format: 'dd/mm/yyyy'});
+        $(document).ready(function () {
+            $('input.timepicker').timepicker({interval: 1, scrollbar: true});
+            $('#myForm').submit((e) => {
+                e.preventDefault();
+                const maKH = e.currentTarget.maKH.value;
+                const maMay = e.currentTarget.maMay.value;
+                const ngayBatDauSuDung = e.currentTarget.ngayBatDauSuDung.value;
+                const gioBatDauSuDung = e.currentTarget.gioBatDauSuDung.value;
+                const thoiGianSuDung = e.currentTarget.thoiGianSuDung.value;
+                console.log(maKH, maMay, ngayBatDauSuDung, gioBatDauSuDung, thoiGianSuDung)
+                let checkMaKH = false,
+                    checkMaMay = false,
+                    checkNgayBatDauSuDung = false,
+                    checkGioBatDauSuDung = false,
+                    checkThoiGianSuDung= false;
+
+                if (maKH && maKH.length === 7) {
+                    let kh = maKH.substring(0, 2);
+                    let xx = maKH.substring(2);
+                    if (kh == 'KH' && stringContainsOnlyNumber(xx)) {
+                        checkMaKH = true;
+                        $("#maKHLog").text('');
+                    } else {
+                        checkMaKH = false;
+                        $("#maKHLog").text('Mã Khách hàng phải là KHxxxxx, x là số.');
+                    }
+                } else {
+                    checkMaKH = false;
+                    $("#maKHLog").text('Mã Khách hàng phải là KHxxxxx, x là số.');
+                }
+                if (ngayBatDauSuDung && checkDate(ngayBatDauSuDung)) {
+                    checkNgayBatDauSuDung = true;
+                    $("#ngayBatDauSuDungLog").text('');
+                } else {
+                    checkNgayBatDauSuDung = false;
+                    $("#ngayBatDauSuDungLog").text('Ngày bắt đầu sử dụng phải là dd/MM/yyyy.');
+                }
+                if (gioBatDauSuDung && checkTime(gioBatDauSuDung.substring(0,5))) {
+                    checkGioBatDauSuDung = true;
+                    $("#gioBatDauSuDungLog").text('');
+                } else {
+                    checkGioBatDauSuDung = false;
+                    $("#gioBatDauSuDungLog").text('Giờ bắt đầu sử dụng phải là 00:00 AM.');
+                }
+                if (thoiGianSuDung && stringContainsOnlyNumber(thoiGianSuDung) && !isNaN(+thoiGianSuDung) && +thoiGianSuDung > 0) {
+                    checkThoiGianSuDung = true;
+                    $("#thoiGianSuDungLog").text('');
+                } else {
+                    checkThoiGianSuDung = false;
+                    $("#thoiGianSuDungLog").text('Thời gian sử dụng phải là số lớn hơn 0.');
+                }
+                if (checkMaKH  && checkNgayBatDauSuDung && checkGioBatDauSuDung && checkThoiGianSuDung){
+                    e.currentTarget.submit();
+                }
+            })
+        });
+    </script> -->
+</body>
+
+</html>

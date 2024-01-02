@@ -1,0 +1,201 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Tạo mới dich vụ</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+        integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="side-bar col-3 pl-0">
+                <ul class="bg-dark header">
+                    <header class="text-uppercase bg-dark text-light font-weight-bold text-center">Menu</header>
+                    <li >
+                        <a href="addComputers" class="text-dark">
+                            <span><i class="fas fa-plus-circle"></i></span>
+                            <span>Tạo mới máy</span>
+                        </a>
+                    </li>
+                    <li >
+                        <a href="addCustomers" class="text-dark">
+                            <span><i class="fas fa-plus-circle"></i></span>
+                            <span>Tạo mới khách hàng</span>
+                        </a>
+                    </li>
+                    <li >
+                        <a href="addServices" class="text-dark">
+                            <span><i class="fas fa-plus-circle"></i></span>
+                            <span>Tạo mới dịch vụ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="listComputers" class="text-dark">
+                            <span><i class="fas fa-list"></i></span>
+                            <span>Liệt kê danh sách máy</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="listCustomers" class="text-dark">
+                            <span><i class="fas fa-list"></i></span>
+                            <span>Liệt kê danh sách khách hàng</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="listServices" class="text-dark">
+                            <span><i class="fas fa-list"></i></span>
+                            <span>Liệt kê danh sách dịch vụ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="computerRegistration" class="text-dark">
+                            <span><i class="fas fa-pencil-alt"></i></span>
+                            <span>Đăng ký sử dụng máy</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="serviceRegistration" class="text-dark">
+                            <span><i class="fas fa-pencil-alt"></i></span>
+                            <span>Đăng ký sử dụng dịch vụ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="listALL" class="text-dark">
+                            <span><i class="fas fa-list"></i></span>
+                            <span>Liệt kê toàn bộ thông tin</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="main-content col-9 bg-dark">
+                <div class="d-flex justify-content-center flex-column">
+                    <h1 class="text-center mt-5 mb-4 text-white">Cập nhật dịch vụ</h1>
+                    <div class="col-md-6 m-auto">
+                        <form th:action="@{updServices}" method="POST" th:object="${maDV}" accept-charset="utf-8" id="myForm">
+                            <div class="form-outline mb-4">
+                                <label class="form-label text-white" for="tenDV">Mã dịch vụ</label>
+                                <input type="text" id="maDV" name="maDV" class="form-control"  th:value="*{madv}" th:field="*{madv}" readonly />
+                                <small class="text-danger" id="maDVLog"></small>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label text-white" for="tenDV">Tên dịch vụ</label>
+                                <input type="text" id="tenDV" name="tenDV" class="form-control"  th:value="*{tendv}" th:field="*{tendv}"/>
+                                <small class="text-danger" id="tenDVLog"></small>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label text-white" for="donViTinh">Đơn vị tính</label>
+                                <input type="text" id="donViTinh" name="donViTinh" class="form-control"  th:value="*{donvitinh}" th:field="*{donvitinh}"/>
+                                <small class="text-danger" id="donViTinhLog"></small>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label text-white" for="donGia">Đơn giá</label>
+                                <input type="text" id="donGia" name="donGia" class="form-control"  th:value="*{dongia}" th:field="*{dongia}"/>
+                                <small class="text-danger" id="donGiaLog"></small>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <button type="submit" class="btn btn-success btn-block mb-4">Cập nhật Dịch Vụ</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/js/v4-shims.min.js"
+        integrity="sha512-91m+ZGg5aSL6XUpAOw+c8vzTsNw2lwwQow/mqunXctqfMV1/d1b/fWF8m10bxnF0qJ3bEHSQuvv0bKqR3AEiiQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script th:src="@{/js/Validation.js}"></script>
+    <script type="text/javascript">
+    	function myFunction(){
+    		alert("Cập Nhật Thành Công!");
+    	}
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#myForm').submit((e) => {
+                e.preventDefault();
+                const maDV = e.currentTarget.maDV.value;
+                const tenDV = e.currentTarget.tenDV.value;
+                const donViTinh = e.currentTarget.donViTinh.value;
+                const donGia = e.currentTarget.donGia.value;
+                console.log(maDV, tenDV, donViTinh, donGia)
+                let checkMaDV = true,
+                    checkTenDV = false,
+                    checkDonViTinh = false,
+                    checkDonGia = false
+
+                if (maDV && maDV.length === 6) {
+                    let kh = maDV.substring(0, 2);
+                    let xx = maDV.substring(3);
+                    if (kh == 'DV' && stringContainsOnlyNumber(xx)) {
+                        checkMaDV = true;
+                        $("#maDVLog").text('');
+                    } else {
+                        checkMaDV = false;
+                        $("#maDVLog").text('Mã dịch vụ phải là DVxxx, x là số.');
+                    }
+                } else {
+                    checkMaDV = false;
+                    $("#maDVLog").text('Mã dịch vụ phải là DVxxx, x là số.');
+                }
+                if(tenDV && checkLength(tenDV, 1, 50)){
+                	checkTenDV = true;
+                        $("#tenDVLog").text('');
+                }else{
+                	checkTenDV = false;
+                    $("#tenDVLog").text('Tên dịch vụ phải có và tối đa 50 ký tự.');
+                }
+                if(donViTinh && checkLength(donViTinh, 1, 50)){
+                	checkDonViTinh = true;
+                        $("#donViTinhLog").text('');
+                }else{
+                	checkDonViTinh = false;
+                    $("#donViTinhLog").text('Đơn vị tính phải có và tối đa 50 ký tự.');
+                }
+                if(donGia && !isNaN(+donGia) && +donGia > 0){
+                    checkDonGia = true;
+                        $("#donGiaLog").text('');
+                }else{
+                    checkDonGia = false;
+                    $("#donGiaLog").text('Đơn giá phải là số dương.');
+                }
+                
+                if (checkTenDV && checkDonViTinh && checkDonGia) {
+                    e.currentTarget.submit(alert("Thêm thành công!"));
+                	console.log("Oke ngon")
+                }
+            })
+        });
+    </script>
+</body>
+
+</html>
